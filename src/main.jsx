@@ -8,11 +8,13 @@ import About from "./copmponents/About";
 import Books from "./copmponents/Books";
 import BookDetails from "./copmponents/BookDetails";
 import LoadingSpinner from "./copmponents/LoadingSpinner";
+import ErrorPage from "./copmponents/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -33,20 +35,13 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://api.itbook.store/1.0/books/${params.id}`),
       },
-      {
-        path: "*",
-        element: "404 No Data Found",
-      },
     ],
   },
   {
     path: "/about",
     element: <p>About pages</p>,
   },
-  {
-    path: "/loader",
-    element: <LoadingSpinner></LoadingSpinner>,
-  },
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
